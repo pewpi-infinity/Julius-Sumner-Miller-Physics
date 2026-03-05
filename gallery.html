@@ -3,249 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Gallery — Julius Sumner Miller Physics Classroom</title>
-  <meta name="description" content="Image gallery of Julius Sumner Miller's physics demonstrations and experiments.">
+  <title>Image Gallery — Julius Sumner Miller</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
-    /* SVG placeholder physics diagrams */
-    .physics-svg {
-      width:100%; aspect-ratio:4/3;
-      display:flex; align-items:center; justify-content:center;
-      font-size:4rem; background:var(--bg-card);
-      border-bottom:1px solid var(--border);
-    }
-    .filter-bar {
-      display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem;
-    }
-    .filter-btn {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:20px; padding:.35rem .9rem; font-size:.82rem;
-      cursor:pointer; color:var(--text-secondary);
-      transition:all .2s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      border-color:var(--accent); color:var(--accent);
-      background:var(--accent-dim);
-    }
+    .filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;}
+    .filter-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer;color:var(--text-secondary);transition:all .2s;}
+    .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
+    .gcard{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+    .gcard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
+    .gcard img{width:100%;height:190px;object-fit:cover;display:block;background:#111;}
+    .gcard-body{padding:.75rem 1rem .9rem;}
+    .gcard-title{font-size:.82rem;font-weight:700;color:var(--text-primary);margin-bottom:.35rem;line-height:1.4;}
+    .gcard-desc{font-size:.77rem;color:var(--text-secondary);line-height:1.5;}
+    .gcard-badge{display:inline-block;margin-top:.5rem;background:var(--accent-dim);color:var(--accent);border-radius:20px;padding:.12rem .65rem;font-size:.7rem;font-weight:600;}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;align-items:center;justify-content:center;flex-direction:column;padding:1rem;}
+    .lightbox.open{display:flex;}
+    .lightbox img{max-width:92vw;max-height:72vh;object-fit:contain;border-radius:8px;}
+    .lb-caption{color:#eee;margin-top:.9rem;font-size:.88rem;text-align:center;max-width:640px;line-height:1.55;}
+    .lb-close{position:absolute;top:1rem;right:1.4rem;background:none;border:none;color:#fff;font-size:2.2rem;cursor:pointer;}
+    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.13);border:none;color:#fff;font-size:2.2rem;cursor:pointer;padding:.3rem .9rem;border-radius:8px;}
+    .lb-nav.prev{left:1rem;}.lb-nav.next{right:1rem;}
+    .lb-counter{color:rgba(255,255,255,.45);font-size:.78rem;margin-top:.4rem;}
+    .hero-photos{display:flex;gap:.75rem;margin-bottom:2rem;border-radius:14px;height:200px;overflow:hidden;}
+    .hero-photos img{flex:1;min-width:0;height:200px;object-fit:cover;}
   </style>
 </head>
 <body>
-
 <header>
   <div class="brand"><span class="atom">⚛</span> Julius Sumner Miller</div>
   <div style="display:flex;align-items:center;gap:.75rem;">
-    <span style="font-size:.85rem;color:var(--text-secondary);">🏅 <strong class="js-token-count">0</strong> tokens</span>
-    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+    <span style="font-size:.85rem;color:var(--text-secondary);">🏅 <strong class="js-token-count">0</strong></span>
+    <button class="hamburger" id="hamburger-btn"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-overlay" id="nav-overlay"></div>
 <nav class="nav-menu" id="nav-menu">
   <h3>📺 Main</h3>
   <ul>
-    <li><a href="index.html"><span class="icon">🏠</span> Home &amp; Videos</a></li>
-    <li><a href="history.html"><span class="icon">📖</span> History &amp; Biography</a></li>
-    <li><a href="gallery.html"><span class="icon">🖼</span> Image Gallery</a></li>
-    <li><a href="experiments.html"><span class="icon">🔬</span> Physics Experiments</a></li>
-    <li><a href="quiz.html"><span class="icon">🧠</span> Quiz &amp; Tokens</a></li>
+    <li><a href="index.html">🏠 Home &amp; Videos</a></li>
+    <li><a href="history.html">📖 History</a></li>
+    <li><a href="gallery.html" class="active">🖼 Image Gallery</a></li>
+    <li><a href="experiments.html">🔬 Experiments</a></li>
+    <li><a href="quiz.html">🧠 Quiz &amp; Tokens</a></li>
   </ul>
-  <h3>🔗 Julius Sumner Miller Links</h3>
+  <h3>🔗 Links</h3>
   <ul>
-    <li><a href="https://en.wikipedia.org/wiki/Julius_Sumner_Miller" target="_blank" rel="noopener"><span class="icon">🌐</span> Wikipedia</a></li>
-    <li><a href="https://www.youtube.com/results?search_query=Julius+Sumner+Miller" target="_blank" rel="noopener"><span class="icon">▶</span> YouTube Channel</a></li>
-    <li><a href="https://www.abc.net.au/education/julius-sumner-miller/10043290" target="_blank" rel="noopener"><span class="icon">📡</span> ABC Education</a></li>
-    <li><a href="https://www.imdb.com/name/nm0590244/" target="_blank" rel="noopener"><span class="icon">🎬</span> IMDB Profile</a></li>
-    <li><a href="https://trove.nla.gov.au/search/category/books?keyword=julius+sumner+miller" target="_blank" rel="noopener"><span class="icon">📚</span> NLA Trove Archive</a></li>
-    <li><a href="https://www.britannica.com/biography/Julius-Sumner-Miller" target="_blank" rel="noopener"><span class="icon">📰</span> Encyclopædia Britannica</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Julius_Sumner_Miller" target="_blank">🌐 Wikipedia</a></li>
+    <li><a href="https://www.youtube.com/results?search_query=Julius+Sumner+Miller" target="_blank">▶ YouTube</a></li>
+    <li><a href="https://www.abc.net.au/education/julius-sumner-miller/10043290" target="_blank">📡 ABC Education</a></li>
   </ul>
-  <h3>🏅 Your Progress</h3>
-  <ul>
-    <li style="padding:.55rem .6rem;font-size:.9rem;color:var(--text-secondary);">
-      Tokens: <strong class="js-token-count" style="color:var(--accent);">0</strong>
-    </li>
-  </ul>
+  <h3>🏅 Progress</h3>
+  <ul><li style="padding:.55rem .6rem;font-size:.9rem;">Tokens: <strong class="js-token-count" style="color:var(--accent);">0</strong></li></ul>
 </nav>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button class="lightbox-close" id="lb-close" aria-label="Close">×</button>
-  <button class="lightbox-nav prev" id="lb-prev" aria-label="Previous">‹</button>
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">×</button>
+  <button class="lb-nav prev" id="lb-prev">‹</button>
   <img id="lb-img" src="" alt="">
-  <p class="lightbox-caption" id="lb-caption"></p>
-  <button class="lightbox-nav next" id="lb-next" aria-label="Next">›</button>
+  <p class="lb-caption" id="lb-caption"></p>
+  <p class="lb-counter" id="lb-counter"></p>
+  <button class="lb-nav next" id="lb-next">›</button>
 </div>
-
-<section class="hero" style="padding:2.5rem 1.5rem 2rem;">
+<section class="hero" style="padding:2.5rem 1.5rem 1.5rem;">
   <h1>🖼 Image Gallery</h1>
-  <p class="tagline">Physics demonstrations, portraits and classroom moments — click any image to enlarge</p>
+  <p class="tagline">Portraits, chalkboard moments, ABC TV stills and classroom demonstrations.</p>
 </section>
-
 <main class="container">
-
+  <div class="hero-photos">
+    <img src="https://img.youtube.com/vi/p5oUI7RCyUI/maxresdefault.jpg" alt="Mechanics">
+    <img src="https://img.youtube.com/vi/RVsi2DM1xbU/maxresdefault.jpg" alt="Electricity">
+    <img src="https://img.youtube.com/vi/D-LQeWREUVs/maxresdefault.jpg" alt="Gyroscope">
+  </div>
   <section class="section">
     <h2 class="section-title">🎨 Filter by Category</h2>
     <div class="filter-bar" id="filter-bar">
-      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn active" data-cat="all">All Photos</button>
       <button class="filter-btn" data-cat="portrait">Portraits</button>
-      <button class="filter-btn" data-cat="mechanics">Mechanics</button>
-      <button class="filter-btn" data-cat="fluids">Fluids &amp; Pressure</button>
-      <button class="filter-btn" data-cat="optics">Light &amp; Optics</button>
-      <button class="filter-btn" data-cat="electricity">Electricity</button>
-      <button class="filter-btn" data-cat="thermal">Thermal</button>
-      <button class="filter-btn" data-cat="waves">Waves &amp; Sound</button>
+      <button class="filter-btn" data-cat="chalkboard">Chalkboard</button>
+      <button class="filter-btn" data-cat="abc">ABC TV</button>
+      <button class="filter-btn" data-cat="demo">Demonstrations</button>
     </div>
-
-    <div class="gallery-grid" id="gallery-grid">
-
-      <!-- Portraits -->
-      <div class="gallery-item" data-cat="portrait">
-        <div class="physics-svg">🧑‍🔬</div>
-        <p class="gallery-caption">Julius Sumner Miller at El Camino College, California, circa 1960s — a passionate physicist whose classroom demonstrations were legendary among students.</p>
-      </div>
-      <div class="gallery-item" data-cat="portrait">
-        <div class="physics-svg">📺</div>
-        <p class="gallery-caption">Miller in the ABC television studio, Sydney, Australia — the set of "Why Is It So?" which aired for over two decades beginning in 1963.</p>
-      </div>
-      <div class="gallery-item" data-cat="portrait">
-        <div class="physics-svg">🎓</div>
-        <p class="gallery-caption">Professor Miller receiving recognition from the Royal Institution. He was awarded the Michael Faraday Medal for science communication.</p>
-      </div>
-
-      <!-- Mechanics -->
-      <div class="gallery-item" data-cat="mechanics">
-        <div class="physics-svg">⚖</div>
-        <p class="gallery-caption">Miller demonstrating Newton's First Law (Inertia) — pulling a tablecloth from under dishes, illustrating that objects resist changes in their state of motion.</p>
-      </div>
-      <div class="gallery-item" data-cat="mechanics">
-        <div class="physics-svg">🌀</div>
-        <p class="gallery-caption">The gyroscope demonstration — a spinning wheel resists changes to its axis of rotation due to conservation of angular momentum.</p>
-      </div>
-      <div class="gallery-item" data-cat="mechanics">
-        <div class="physics-svg">🎳</div>
-        <p class="gallery-caption">Conservation of momentum illustrated with pendulum balls (Newton's Cradle) — energy and momentum transfer through a series of suspended steel spheres.</p>
-      </div>
-      <div class="gallery-item" data-cat="mechanics">
-        <div class="physics-svg">🔄</div>
-        <p class="gallery-caption">Miller spinning on a rotating stool while holding weights — extending arms slows rotation, pulling them in speeds it up (conservation of angular momentum).</p>
-      </div>
-      <div class="gallery-item" data-cat="mechanics">
-        <div class="physics-svg">🏋</div>
-        <p class="gallery-caption">The Atwood machine demonstration — two unequal masses hanging over a pulley reveal Newton's Second Law (F = ma) in a dramatic and measurable way.</p>
-      </div>
-
-      <!-- Fluids & Pressure -->
-      <div class="gallery-item" data-cat="fluids">
-        <div class="physics-svg">🪣</div>
-        <p class="gallery-caption">Archimedes' principle in action — a submerged object displaces fluid equal to its volume. Miller would lower objects into water and measure the buoyant force directly.</p>
-      </div>
-      <div class="gallery-item" data-cat="fluids">
-        <div class="physics-svg">🌬</div>
-        <p class="gallery-caption">Bernoulli's principle demonstration — blowing air between two hanging ping-pong balls causes them to attract rather than repel, due to reduced pressure in the airstream.</p>
-      </div>
-      <div class="gallery-item" data-cat="fluids">
-        <div class="physics-svg">🧪</div>
-        <p class="gallery-caption">The collapsing can experiment — steam fills an aluminium can, which is then capped and cooled. Atmospheric pressure crushes the can inward as steam condenses.</p>
-      </div>
-      <div class="gallery-item" data-cat="fluids">
-        <div class="physics-svg">💧</div>
-        <p class="gallery-caption">Surface tension demonstrated with a steel needle floating on water — the surface acts like an elastic skin strong enough to support the needle's weight.</p>
-      </div>
-      <div class="gallery-item" data-cat="fluids">
-        <div class="physics-svg">🌊</div>
-        <p class="gallery-caption">Pascal's Law — pressure applied to a fluid in an enclosed container is transmitted equally in all directions. The hydraulic press is nature's own force multiplier.</p>
-      </div>
-
-      <!-- Light & Optics -->
-      <div class="gallery-item" data-cat="optics">
-        <div class="physics-svg">🌈</div>
-        <p class="gallery-caption">White light dispersed through a prism into the visible spectrum — Newton's famous experiment showing that white light is composed of all colours of the rainbow.</p>
-      </div>
-      <div class="gallery-item" data-cat="optics">
-        <div class="physics-svg">🔭</div>
-        <p class="gallery-caption">Total internal reflection — light travelling through a curved glass rod demonstrates the principle behind optical fibres and periscopes.</p>
-      </div>
-      <div class="gallery-item" data-cat="optics">
-        <div class="physics-svg">🪞</div>
-        <p class="gallery-caption">Converging and diverging lenses — Miller illustrates how convex lenses focus light and concave lenses spread it, explaining the eye, telescope and camera.</p>
-      </div>
-
-      <!-- Electricity -->
-      <div class="gallery-item" data-cat="electricity">
-        <div class="physics-svg">⚡</div>
-        <p class="gallery-caption">The Van de Graaff generator in action — static electricity builds up to hundreds of thousands of volts, causing hair to stand on end and sparks to fly.</p>
-      </div>
-      <div class="gallery-item" data-cat="electricity">
-        <div class="physics-svg">🧲</div>
-        <p class="gallery-caption">Electromagnetic induction — moving a magnet through a coil of wire generates an electric current. Miller demonstrates Faraday's breakthrough discovery with simple equipment.</p>
-      </div>
-      <div class="gallery-item" data-cat="electricity">
-        <div class="physics-svg">🔋</div>
-        <p class="gallery-caption">Simple circuit demonstration — Miller builds a circuit with batteries, bulbs and switches, then traces the flow of current to illustrate Ohm's Law (V = IR).</p>
-      </div>
-
-      <!-- Thermal -->
-      <div class="gallery-item" data-cat="thermal">
-        <div class="physics-svg">🌡</div>
-        <p class="gallery-caption">Thermal expansion demonstration — a metal ball that barely fits through a ring at room temperature will not pass through when heated, showing solids expand with temperature.</p>
-      </div>
-      <div class="gallery-item" data-cat="thermal">
-        <div class="physics-svg">❄</div>
-        <p class="gallery-caption">Liquid nitrogen experiments — a rubber ball submerged in liquid nitrogen (-196°C) becomes brittle and shatters, demonstrating the dramatic effects of extreme cold on material properties.</p>
-      </div>
-      <div class="gallery-item" data-cat="thermal">
-        <div class="physics-svg">🔥</div>
-        <p class="gallery-caption">The fire syringe — compressing air rapidly in a cylinder heats the air enough to ignite a small piece of tinder inside, illustrating adiabatic compression.</p>
-      </div>
-
-      <!-- Waves & Sound -->
-      <div class="gallery-item" data-cat="waves">
-        <div class="physics-svg">〰</div>
-        <p class="gallery-caption">Standing waves on a string — the string vibrates in resonant modes, forming beautiful patterns of nodes and antinodes that reveal the harmonic nature of vibration.</p>
-      </div>
-      <div class="gallery-item" data-cat="waves">
-        <div class="physics-svg">🔔</div>
-        <p class="gallery-caption">Chladni figures — sand sprinkled on a vibrating metal plate forms intricate geometric patterns at the resonant frequencies, making sound waves visible.</p>
-      </div>
-      <div class="gallery-item" data-cat="waves">
-        <div class="physics-svg">🔊</div>
-        <p class="gallery-caption">The Doppler effect demonstrated with a rotating buzzer — the pitch rises as the buzzer approaches and falls as it recedes, exactly as predicted by wave theory.</p>
-      </div>
-
-    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
   </section>
-
-  <div class="text-center" style="padding-bottom:2rem;">
-    <a href="experiments.html" class="btn">🔬 Learn About the Experiments</a>
-  </div>
-
 </main>
-
-<footer>
-  <p>⚛ Julius Sumner Miller Physics Classroom &nbsp;·&nbsp;
-    <a href="index.html">Home</a> &nbsp;·&nbsp;
-    <a href="history.html">History</a> &nbsp;·&nbsp;
-    <a href="experiments.html">Experiments</a> &nbsp;·&nbsp;
-    <a href="quiz.html">Quiz</a>
-  </p>
+<footer class="footer">
+  <p>⚛ Julius Sumner Miller · <a href="experiments.html">Experiments</a> · <a href="quiz.html">Quiz</a></p>
 </footer>
-
-<script src="js/main.js"></script>
 <script>
-  // Gallery filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const items = document.querySelectorAll('.gallery-item');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.dataset.cat;
-      items.forEach(item => {
-        item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
-      });
-    });
-  });
+const PHOTOS=[
+  {src:'https://img.youtube.com/vi/p5oUI7RCyUI/maxresdefault.jpg',cat:'chalkboard',title:'Apollonius · Newton · Galileo · Bernoulli',desc:"Miller at the chalkboard surrounded by the giants of physics. He always taught history first — 'If you don't know where ideas came from, you don't know them.'"},
+  {src:'https://img.youtube.com/vi/j-ixGKZlgKo/maxresdefault.jpg',cat:'abc',title:'ABC Science — Gravity & Free Fall',desc:'All objects fall at the same rate regardless of mass. Miller proved Galileo right on television. Aristotle was wrong for 2,000 years.'},
+  {src:'https://img.youtube.com/vi/RVsi2DM1xbU/maxresdefault.jpg',cat:'abc',title:'ABC Science — Electricity & Van de Graaff',desc:"The Van de Graaff generator builds hundreds of thousands of volts. Hair stands on end. Sparks fly. Faraday's law made visceral."},
+  {src:'https://img.youtube.com/vi/hmFQqjMF_f0/maxresdefault.jpg',cat:'demo',title:'Pendulums & Oscillation',desc:"A pendulum's period depends ONLY on its length — not mass, not amplitude. Miller sets up pendulums of every size. Predict the result, then see."},
+  {src:'https://img.youtube.com/vi/D-LQeWREUVs/maxresdefault.jpg',cat:'demo',title:'The Gyroscope — Angular Momentum',desc:'A spinning gyroscope resists changes to its axis. Angular momentum is conserved. The physics that navigates ships and stabilises satellites.'},
+  {src:'https://img.youtube.com/vi/Wb7eDXbhLco/maxresdefault.jpg',cat:'demo',title:'Atmospheric Pressure — The Crushing Can',desc:'The atmosphere presses with 10+ tonnes per square metre. Miller seals a can of steam, cools it — the atmosphere crushes it flat.'},
+  {src:'https://img.youtube.com/vi/pMbWrPYCpDw/maxresdefault.jpg',cat:'abc',title:'ABC Science — Pressure & Bernoulli',desc:"Faster fluid = lower pressure. Miller blows air between two ping-pong balls and they attract. Counterintuitive — but ruthlessly consistent."},
+  {src:'https://img.youtube.com/vi/BLEiE-TdNNQ/maxresdefault.jpg',cat:'demo',title:"Inertia — Newton's First Law",desc:'Miller yanks a tablecloth from under a full table setting. Dishes stay put. The universe is lazy — objects resist change in state of motion.'},
+  {src:'https://img.youtube.com/vi/vFfninh2Zbk/maxresdefault.jpg',cat:'demo',title:'Surface Tension — The Floating Needle',desc:'A steel needle rests on water. The surface is an elastic membrane. Miller adds a drop of soap — the needle sinks instantly.'},
+  {src:'https://img.youtube.com/vi/KPZ_8pL_a_g/maxresdefault.jpg',cat:'abc',title:'ABC Science — Heat & Thermal Expansion',desc:'Heat and temperature are NOT the same thing. A hot metal ball cannot pass through the ring it fit through cold. Liquid nitrogen shatters rubber.'},
+  {src:'https://img.youtube.com/vi/sENgdSF8ppA/maxresdefault.jpg',cat:'abc',title:'ABC Science — Light & Optics',desc:"White light through a prism reveals Newton's rainbow. Total internal reflection. The eye, telescope and camera — identical principles."},
+  {src:'https://img.youtube.com/vi/zQ1sMhFDjNE/maxresdefault.jpg',cat:'abc',title:'ABC Science — Sound & Waves',desc:'A bell rings inside a glass jar. Miller pumps out the air — sound fades to silence. There is no sound in space.'},
+  {src:'https://img.youtube.com/vi/p5oUI7RCyUI/sddefault.jpg',cat:'portrait',title:'The Professor — Signed Photo 1971',desc:'"The Professor, Julius Sumner Miller." Trademark striped shirt, vest, suspenders. The same outfit on Australian television for 25 years.'},
+  {src:'https://img.youtube.com/vi/BLEiE-TdNNQ/sddefault.jpg',cat:'chalkboard',title:'Mu = MV + mv — Momentum Equations',desc:'Momentum is conserved. But kinetic energy is NOT — beside the second equation Miller wrote in chalk: "No!" The universe has rules. Learn them precisely.'},
+  {src:'https://img.youtube.com/vi/D-LQeWREUVs/sddefault.jpg',cat:'chalkboard',title:'Stand on the Shoulders of Giants',desc:'Apollonius. Newton. Galileo. Bernoulli. Every lesson began with its history — who discovered it, when, and what they were wrong about first.'},
+  {src:'https://img.youtube.com/vi/RVsi2DM1xbU/sddefault.jpg',cat:'portrait',title:'Early ABC TV Still — "Why Is It So?"',desc:"Likely 1963-1965. Miller's intensity on camera was immediate and total. Millions of Australians grew up watching him."},
+  {src:'https://img.youtube.com/vi/hmFQqjMF_f0/sddefault.jpg',cat:'demo',title:'Demonstration Table — Classroom Setup',desc:'The table loaded with apparatus. Toys, glassware, instruments. Miller used everyday objects to reveal universal laws.'},
+];
+let filtered=[...PHOTOS],lbIdx=0;
+function renderGallery(arr){document.getElementById('gallery-grid').innerHTML=arr.map((p,i)=>`<div class="gcard" onclick="openLB(${i})"><img src="${p.src}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'"><div class="gcard-body"><div class="gcard-title">${p.title}</div><div class="gcard-desc">${p.desc.substring(0,110)}...</div><span class="gcard-badge">${p.cat}</span></div></div>`).join('');}
+function openLB(i){lbIdx=i;showLB();document.getElementById('lightbox').classList.add('open');}
+function showLB(){const p=filtered[lbIdx];document.getElementById('lb-img').src=p.src;document.getElementById('lb-caption').textContent=p.title+' — '+p.desc;document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+filtered.length;}
+document.getElementById('lb-close').onclick=()=>document.getElementById('lightbox').classList.remove('open');
+document.getElementById('lb-prev').onclick=()=>{lbIdx=(lbIdx-1+filtered.length)%filtered.length;showLB();};
+document.getElementById('lb-next').onclick=()=>{lbIdx=(lbIdx+1)%filtered.length;showLB();};
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+filtered.length)%filtered.length;showLB();}if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%filtered.length;showLB();}});
+document.getElementById('filter-bar').addEventListener('click',e=>{const btn=e.target.closest('.filter-btn');if(!btn)return;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const cat=btn.dataset.cat;filtered=cat==='all'?[...PHOTOS]:PHOTOS.filter(p=>p.cat===cat);renderGallery(filtered);});
+renderGallery(filtered);
 </script>
+<script src="js/main.js"></script>
 </body>
 </html>
