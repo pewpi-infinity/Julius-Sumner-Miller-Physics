@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz & Tokens — Julius Sumner Miller Classroom</title>
+  <meta name="description" content="Physics quiz inspired by Julius Sumner Miller with token rewards.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="atom">⚛</span> Julius Sumner Miller</div>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <span style="font-size:.85rem;color:var(--text-secondary);">🏅 <strong class="js-token-count">0</strong> tokens</span>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="nav-overlay" id="nav-overlay"></div>
+<nav class="nav-menu" id="nav-menu">
+  <h3>📺 Main</h3>
+  <ul>
+    <li><a href="index.html"><span class="icon">🏠</span> Home &amp; Videos</a></li>
+    <li><a href="history.html"><span class="icon">📖</span> History &amp; Biography</a></li>
+    <li><a href="gallery.html"><span class="icon">🖼</span> Image Gallery</a></li>
+    <li><a href="experiments.html"><span class="icon">🔬</span> Physics Experiments</a></li>
+    <li><a href="quiz.html"><span class="icon">🧠</span> Quiz &amp; Tokens</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="padding:2.5rem 1.5rem 2rem;">
+  <h1>🧠 Quiz &amp; Tokens</h1>
+  <p class="tagline">Answer all questions to earn tokens and review detailed explanations.</p>
+</section>
+
+<main class="container">
+  <section class="section">
+    <div class="progress-bar"><div id="quiz-progress" class="progress-fill"></div></div>
+    <div id="quiz-container"></div>
+    <div class="text-center" style="margin-top:1rem;">
+      <button class="btn" id="quiz-submit">Submit Quiz</button>
+      <button class="btn" id="quiz-retry" style="margin-left:.6rem;">Retry</button>
+    </div>
+    <div id="score-screen" class="score-screen" style="margin-top:1.25rem;">
+      <h3 style="margin-bottom:.5rem;">Results</h3>
+      <p>Score: <strong id="score-num">0</strong>/<strong id="score-total">0</strong></p>
+      <p>Tokens earned this attempt: <strong id="tokens-earned">0</strong></p>
+      <p id="score-msg"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>⚛ Julius Sumner Miller Physics Classroom &nbsp;·&nbsp;
+    <a href="index.html">Home</a> &nbsp;·&nbsp;
+    <a href="history.html">History</a> &nbsp;·&nbsp;
+    <a href="gallery.html">Gallery</a> &nbsp;·&nbsp;
+    <a href="experiments.html">Experiments</a>
+  </p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
