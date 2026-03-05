@@ -905,3 +905,5 @@ footer a:hover{color:var(--gold)}
 .playlist-desc{font-size:.68rem;color:#888;margin-top:.3rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .playlist-item.active .playlist-title,.playlist-item.active .playlist-topic{color:var(--gold);}
 #video-desc{margin:.75rem 0 .5rem;font-size:.88rem;color:var(--text-secondary);line-height:1.55;padding:.6rem .8rem;background:var(--bg-card);border-radius:8px;border-left:3px solid var(--accent);}
+.playlist-item{display:flex;flex-direction:column;}
+#video-desc{margin:.6rem 0;font-size:.86rem;color:var(--text-secondary);line-height:1.5;padding:.55rem .8rem;background:var(--bg-card);border-radius:8px;border-left:3px solid var(--accent);}

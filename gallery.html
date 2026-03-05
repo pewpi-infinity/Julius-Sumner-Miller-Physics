@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Gallery — Julius Sumner Miller</title>
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;}
-    .filter-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer;color:var(--text-secondary);transition:all .2s;}
-    .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);}
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
-    .gcard{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;}
-    .gcard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
-    .gcard img{width:100%;height:190px;object-fit:cover;display:block;background:#111;}
-    .gcard-body{padding:.75rem 1rem .9rem;}
-    .gcard-title{font-size:.82rem;font-weight:700;color:var(--text-primary);margin-bottom:.35rem;line-height:1.4;}
-    .gcard-desc{font-size:.77rem;color:var(--text-secondary);line-height:1.5;}
-    .gcard-badge{display:inline-block;margin-top:.5rem;background:var(--accent-dim);color:var(--accent);border-radius:20px;padding:.12rem .65rem;font-size:.7rem;font-weight:600;}
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;align-items:center;justify-content:center;flex-direction:column;padding:1rem;}
-    .lightbox.open{display:flex;}
-    .lightbox img{max-width:92vw;max-height:72vh;object-fit:contain;border-radius:8px;}
-    .lb-caption{color:#eee;margin-top:.9rem;font-size:.88rem;text-align:center;max-width:640px;line-height:1.55;}
-    .lb-close{position:absolute;top:1rem;right:1.4rem;background:none;border:none;color:#fff;font-size:2.2rem;cursor:pointer;}
-    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.13);border:none;color:#fff;font-size:2.2rem;cursor:pointer;padding:.3rem .9rem;border-radius:8px;}
-    .lb-nav.prev{left:1rem;}.lb-nav.next{right:1rem;}
-    .lb-counter{color:rgba(255,255,255,.45);font-size:.78rem;margin-top:.4rem;}
-    .hero-photos{display:flex;gap:.75rem;margin-bottom:2rem;border-radius:14px;height:200px;overflow:hidden;}
-    .hero-photos img{flex:1;min-width:0;height:200px;object-fit:cover;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Image Gallery — Julius Sumner Miller</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;}
+.filter-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer;color:var(--text-secondary);transition:all .2s;}
+.filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem;}
+.gcard{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.gcard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
+.gcard img{width:100%;height:180px;object-fit:cover;display:block;background:#111;}
+.gcard-body{padding:.7rem .9rem .8rem;}
+.gcard-title{font-size:.8rem;font-weight:700;color:var(--text-primary);margin-bottom:.3rem;line-height:1.4;}
+.gcard-desc{font-size:.74rem;color:var(--text-secondary);line-height:1.5;}
+.gcard-badge{display:inline-block;margin-top:.45rem;background:var(--accent-dim);color:var(--accent);border-radius:20px;padding:.1rem .6rem;font-size:.68rem;font-weight:600;}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;align-items:center;justify-content:center;flex-direction:column;padding:1rem;}
+.lb.open{display:flex;}
+.lb img{max-width:92vw;max-height:72vh;object-fit:contain;border-radius:8px;}
+.lb-cap{color:#eee;margin-top:.8rem;font-size:.86rem;text-align:center;max-width:620px;line-height:1.5;}
+.lb-x{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:2rem;cursor:pointer;padding:.3rem .8rem;border-radius:8px;}
+.lb-nav.p{left:1rem;}.lb-nav.n{right:1rem;}
+.lb-num{color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.4rem;}
+.hstrip{display:flex;gap:.6rem;height:190px;border-radius:12px;overflow:hidden;margin-bottom:1.5rem;}
+.hstrip img{flex:1;min-width:0;height:100%;object-fit:cover;}
+</style>
 </head>
 <body>
 <header>
@@ -51,74 +51,69 @@
   <ul>
     <li><a href="https://en.wikipedia.org/wiki/Julius_Sumner_Miller" target="_blank">🌐 Wikipedia</a></li>
     <li><a href="https://www.youtube.com/results?search_query=Julius+Sumner+Miller" target="_blank">▶ YouTube</a></li>
-    <li><a href="https://www.abc.net.au/education/julius-sumner-miller/10043290" target="_blank">📡 ABC Education</a></li>
   </ul>
-  <h3>🏅 Progress</h3>
-  <ul><li style="padding:.55rem .6rem;font-size:.9rem;">Tokens: <strong class="js-token-count" style="color:var(--accent);">0</strong></li></ul>
 </nav>
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lb-close">×</button>
-  <button class="lb-nav prev" id="lb-prev">‹</button>
-  <img id="lb-img" src="" alt="">
-  <p class="lb-caption" id="lb-caption"></p>
-  <p class="lb-counter" id="lb-counter"></p>
-  <button class="lb-nav next" id="lb-next">›</button>
+<div class="lb" id="lb">
+  <button class="lb-x" id="lbx">×</button>
+  <button class="lb-nav p" id="lbp">‹</button>
+  <img id="lbi" src="" alt="">
+  <p class="lb-cap" id="lbc"></p>
+  <p class="lb-num" id="lbn"></p>
+  <button class="lb-nav n" id="lbn2">›</button>
 </div>
 <section class="hero" style="padding:2.5rem 1.5rem 1.5rem;">
   <h1>🖼 Image Gallery</h1>
-  <p class="tagline">Portraits, chalkboard moments, ABC TV stills and classroom demonstrations.</p>
+  <p class="tagline">Portraits · Chalkboard · ABC TV stills · Classroom demonstrations</p>
 </section>
 <main class="container">
-  <div class="hero-photos">
+  <div class="hstrip">
     <img src="https://img.youtube.com/vi/p5oUI7RCyUI/maxresdefault.jpg" alt="Mechanics">
     <img src="https://img.youtube.com/vi/RVsi2DM1xbU/maxresdefault.jpg" alt="Electricity">
     <img src="https://img.youtube.com/vi/D-LQeWREUVs/maxresdefault.jpg" alt="Gyroscope">
   </div>
   <section class="section">
-    <h2 class="section-title">🎨 Filter by Category</h2>
-    <div class="filter-bar" id="filter-bar">
-      <button class="filter-btn active" data-cat="all">All Photos</button>
-      <button class="filter-btn" data-cat="portrait">Portraits</button>
+    <h2 class="section-title">🎨 Filter</h2>
+    <div class="filter-bar" id="fbar">
+      <button class="filter-btn active" data-cat="all">All</button>
       <button class="filter-btn" data-cat="chalkboard">Chalkboard</button>
       <button class="filter-btn" data-cat="abc">ABC TV</button>
       <button class="filter-btn" data-cat="demo">Demonstrations</button>
+      <button class="filter-btn" data-cat="portrait">Portraits</button>
     </div>
-    <div class="gallery-grid" id="gallery-grid"></div>
+    <div class="gallery-grid" id="gg"></div>
   </section>
 </main>
-<footer class="footer">
-  <p>⚛ Julius Sumner Miller · <a href="experiments.html">Experiments</a> · <a href="quiz.html">Quiz</a></p>
-</footer>
+<footer class="footer"><p>⚛ Julius Sumner Miller · <a href="experiments.html">Experiments</a> · <a href="quiz.html">Quiz</a></p></footer>
 <script>
-const PHOTOS=[
-  {src:'https://img.youtube.com/vi/p5oUI7RCyUI/maxresdefault.jpg',cat:'chalkboard',title:'Apollonius · Newton · Galileo · Bernoulli',desc:"Miller at the chalkboard surrounded by the giants of physics. He always taught history first — 'If you don't know where ideas came from, you don't know them.'"},
-  {src:'https://img.youtube.com/vi/j-ixGKZlgKo/maxresdefault.jpg',cat:'abc',title:'ABC Science — Gravity & Free Fall',desc:'All objects fall at the same rate regardless of mass. Miller proved Galileo right on television. Aristotle was wrong for 2,000 years.'},
-  {src:'https://img.youtube.com/vi/RVsi2DM1xbU/maxresdefault.jpg',cat:'abc',title:'ABC Science — Electricity & Van de Graaff',desc:"The Van de Graaff generator builds hundreds of thousands of volts. Hair stands on end. Sparks fly. Faraday's law made visceral."},
-  {src:'https://img.youtube.com/vi/hmFQqjMF_f0/maxresdefault.jpg',cat:'demo',title:'Pendulums & Oscillation',desc:"A pendulum's period depends ONLY on its length — not mass, not amplitude. Miller sets up pendulums of every size. Predict the result, then see."},
-  {src:'https://img.youtube.com/vi/D-LQeWREUVs/maxresdefault.jpg',cat:'demo',title:'The Gyroscope — Angular Momentum',desc:'A spinning gyroscope resists changes to its axis. Angular momentum is conserved. The physics that navigates ships and stabilises satellites.'},
-  {src:'https://img.youtube.com/vi/Wb7eDXbhLco/maxresdefault.jpg',cat:'demo',title:'Atmospheric Pressure — The Crushing Can',desc:'The atmosphere presses with 10+ tonnes per square metre. Miller seals a can of steam, cools it — the atmosphere crushes it flat.'},
-  {src:'https://img.youtube.com/vi/pMbWrPYCpDw/maxresdefault.jpg',cat:'abc',title:'ABC Science — Pressure & Bernoulli',desc:"Faster fluid = lower pressure. Miller blows air between two ping-pong balls and they attract. Counterintuitive — but ruthlessly consistent."},
-  {src:'https://img.youtube.com/vi/BLEiE-TdNNQ/maxresdefault.jpg',cat:'demo',title:"Inertia — Newton's First Law",desc:'Miller yanks a tablecloth from under a full table setting. Dishes stay put. The universe is lazy — objects resist change in state of motion.'},
-  {src:'https://img.youtube.com/vi/vFfninh2Zbk/maxresdefault.jpg',cat:'demo',title:'Surface Tension — The Floating Needle',desc:'A steel needle rests on water. The surface is an elastic membrane. Miller adds a drop of soap — the needle sinks instantly.'},
-  {src:'https://img.youtube.com/vi/KPZ_8pL_a_g/maxresdefault.jpg',cat:'abc',title:'ABC Science — Heat & Thermal Expansion',desc:'Heat and temperature are NOT the same thing. A hot metal ball cannot pass through the ring it fit through cold. Liquid nitrogen shatters rubber.'},
-  {src:'https://img.youtube.com/vi/sENgdSF8ppA/maxresdefault.jpg',cat:'abc',title:'ABC Science — Light & Optics',desc:"White light through a prism reveals Newton's rainbow. Total internal reflection. The eye, telescope and camera — identical principles."},
-  {src:'https://img.youtube.com/vi/zQ1sMhFDjNE/maxresdefault.jpg',cat:'abc',title:'ABC Science — Sound & Waves',desc:'A bell rings inside a glass jar. Miller pumps out the air — sound fades to silence. There is no sound in space.'},
-  {src:'https://img.youtube.com/vi/p5oUI7RCyUI/sddefault.jpg',cat:'portrait',title:'The Professor — Signed Photo 1971',desc:'"The Professor, Julius Sumner Miller." Trademark striped shirt, vest, suspenders. The same outfit on Australian television for 25 years.'},
-  {src:'https://img.youtube.com/vi/BLEiE-TdNNQ/sddefault.jpg',cat:'chalkboard',title:'Mu = MV + mv — Momentum Equations',desc:'Momentum is conserved. But kinetic energy is NOT — beside the second equation Miller wrote in chalk: "No!" The universe has rules. Learn them precisely.'},
-  {src:'https://img.youtube.com/vi/D-LQeWREUVs/sddefault.jpg',cat:'chalkboard',title:'Stand on the Shoulders of Giants',desc:'Apollonius. Newton. Galileo. Bernoulli. Every lesson began with its history — who discovered it, when, and what they were wrong about first.'},
-  {src:'https://img.youtube.com/vi/RVsi2DM1xbU/sddefault.jpg',cat:'portrait',title:'Early ABC TV Still — "Why Is It So?"',desc:"Likely 1963-1965. Miller's intensity on camera was immediate and total. Millions of Australians grew up watching him."},
-  {src:'https://img.youtube.com/vi/hmFQqjMF_f0/sddefault.jpg',cat:'demo',title:'Demonstration Table — Classroom Setup',desc:'The table loaded with apparatus. Toys, glassware, instruments. Miller used everyday objects to reveal universal laws.'},
+const P=[
+  {src:'https://img.youtube.com/vi/p5oUI7RCyUI/maxresdefault.jpg',cat:'chalkboard',t:'Apollonius · Newton · Galileo · Bernoulli',d:"Miller at the chalkboard surrounded by the giants of physics. He always taught history first — if you don't know where ideas came from, you don't know them."},
+  {src:'https://img.youtube.com/vi/j-ixGKZlgKo/maxresdefault.jpg',cat:'abc',t:'ABC Science — Gravity & Free Fall',d:'All objects fall at the same rate regardless of mass. Galileo was right. Aristotle was wrong for 2,000 years. Miller proved it on television.'},
+  {src:'https://img.youtube.com/vi/RVsi2DM1xbU/maxresdefault.jpg',cat:'abc',t:'ABC Science — Electricity & Van de Graaff',d:"The Van de Graaff builds hundreds of thousands of volts. Hair stands on end. Sparks fly. Faraday's electromagnetic induction made visceral."},
+  {src:'https://img.youtube.com/vi/hmFQqjMF_f0/maxresdefault.jpg',cat:'demo',t:'Pendulums & Oscillation',d:"A pendulum's period depends ONLY on its length — not mass, not amplitude. Miller challenges the audience to predict, then reveals the truth."},
+  {src:'https://img.youtube.com/vi/D-LQeWREUVs/maxresdefault.jpg',cat:'demo',t:'The Gyroscope — Angular Momentum',d:'A spinning gyroscope resists changes to its axis. Angular momentum is conserved. The physics that navigates ships and stabilises satellites.'},
+  {src:'https://img.youtube.com/vi/Wb7eDXbhLco/maxresdefault.jpg',cat:'demo',t:'Atmospheric Pressure — The Crushing Can',d:'The atmosphere presses with 10+ tonnes per square metre. Miller seals a can of steam, cools it — and the atmosphere crushes it flat.'},
+  {src:'https://img.youtube.com/vi/pMbWrPYCpDw/maxresdefault.jpg',cat:'abc',t:'ABC Science — Pressure & Bernoulli',d:"Faster fluid = lower pressure. Miller blows air between two ping-pong balls and they attract rather than repel. Counterintuitive but ruthlessly consistent."},
+  {src:'https://img.youtube.com/vi/BLEiE-TdNNQ/maxresdefault.jpg',cat:'demo',t:"Inertia — Newton's First Law",d:'Tablecloth yanked from under dishes. Dishes stay put. The universe is lazy — objects resist change in their state of motion.'},
+  {src:'https://img.youtube.com/vi/vFfninh2Zbk/maxresdefault.jpg',cat:'demo',t:'Surface Tension — The Floating Needle',d:'A steel needle rests on water. The surface behaves like an elastic membrane. Miller adds one drop of soap — the needle sinks instantly.'},
+  {src:'https://img.youtube.com/vi/KPZ_8pL_a_g/maxresdefault.jpg',cat:'abc',t:'ABC Science — Heat & Thermal Expansion',d:'Heat and temperature are NOT the same thing. A hot metal ball cannot pass through the ring it fit through cold. Liquid nitrogen shatters rubber.'},
+  {src:'https://img.youtube.com/vi/sENgdSF8ppA/maxresdefault.jpg',cat:'abc',t:'ABC Science — Light & Optics',d:"White light through a prism reveals Newton's full rainbow. Total internal reflection. The eye, telescope and camera use identical principles."},
+  {src:'https://img.youtube.com/vi/zQ1sMhFDjNE/maxresdefault.jpg',cat:'abc',t:'ABC Science — Sound & Waves',d:'A bell rings in a glass jar. Miller pumps out the air. The sound fades to silence. There is no sound in space.'},
+  {src:'https://img.youtube.com/vi/p5oUI7RCyUI/sddefault.jpg',cat:'portrait',t:'The Professor — Signed Photo 1971',d:'"The Professor, Julius Sumner Miller." Trademark striped shirt, vest, suspenders — the same outfit on Australian TV for 25 years.'},
+  {src:'https://img.youtube.com/vi/BLEiE-TdNNQ/sddefault.jpg',cat:'chalkboard',t:'Mu = MV + mv — The Momentum Equations',d:'Momentum is conserved. But kinetic energy is NOT — beside the second equation Miller wrote in chalk: "No!" The universe has rules. Learn them precisely.'},
+  {src:'https://img.youtube.com/vi/D-LQeWREUVs/sddefault.jpg',cat:'chalkboard',t:'Stand on the Shoulders of Giants',d:'Apollonius. Newton. Galileo. Bernoulli. Every lesson began with its history — who discovered it, when, and what they were wrong about first.'},
+  {src:'https://img.youtube.com/vi/RVsi2DM1xbU/sddefault.jpg',cat:'portrait',t:'Early ABC TV Still — Why Is It So?',d:"Likely 1963-1965. Miller's intensity on camera was immediate and total. Millions of Australians grew up watching him."},
+  {src:'https://img.youtube.com/vi/hmFQqjMF_f0/sddefault.jpg',cat:'demo',t:'Demonstration Table — Classroom Setup',d:'The table loaded with apparatus. Toys, glassware, instruments. Miller used everyday objects to reveal universal laws.'},
 ];
-let filtered=[...PHOTOS],lbIdx=0;
-function renderGallery(arr){document.getElementById('gallery-grid').innerHTML=arr.map((p,i)=>`<div class="gcard" onclick="openLB(${i})"><img src="${p.src}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'"><div class="gcard-body"><div class="gcard-title">${p.title}</div><div class="gcard-desc">${p.desc.substring(0,110)}...</div><span class="gcard-badge">${p.cat}</span></div></div>`).join('');}
-function openLB(i){lbIdx=i;showLB();document.getElementById('lightbox').classList.add('open');}
-function showLB(){const p=filtered[lbIdx];document.getElementById('lb-img').src=p.src;document.getElementById('lb-caption').textContent=p.title+' — '+p.desc;document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+filtered.length;}
-document.getElementById('lb-close').onclick=()=>document.getElementById('lightbox').classList.remove('open');
-document.getElementById('lb-prev').onclick=()=>{lbIdx=(lbIdx-1+filtered.length)%filtered.length;showLB();};
-document.getElementById('lb-next').onclick=()=>{lbIdx=(lbIdx+1)%filtered.length;showLB();};
-document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+filtered.length)%filtered.length;showLB();}if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%filtered.length;showLB();}});
-document.getElementById('filter-bar').addEventListener('click',e=>{const btn=e.target.closest('.filter-btn');if(!btn)return;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const cat=btn.dataset.cat;filtered=cat==='all'?[...PHOTOS]:PHOTOS.filter(p=>p.cat===cat);renderGallery(filtered);});
-renderGallery(filtered);
+let fl=[...P],li=0;
+function rend(a){document.getElementById('gg').innerHTML=a.map((p,i)=>'<div class="gcard" onclick="olb('+i+')"><img src="'+p.src+'" loading="lazy" alt="'+p.t+'" onerror="this.style.display=\'none\'"><div class="gcard-body"><div class="gcard-title">'+p.t+'</div><div class="gcard-desc">'+p.d.substring(0,100)+'...</div><span class="gcard-badge">'+p.cat+'</span></div></div>').join('');}
+function olb(i){li=i;slb();document.getElementById('lb').classList.add('open');}
+function slb(){const p=fl[li];document.getElementById('lbi').src=p.src;document.getElementById('lbc').textContent=p.t+' — '+p.d;document.getElementById('lbn').textContent=(li+1)+' / '+fl.length;}
+document.getElementById('lbx').onclick=()=>document.getElementById('lb').classList.remove('open');
+document.getElementById('lbp').onclick=()=>{li=(li-1+fl.length)%fl.length;slb();};
+document.getElementById('lbn2').onclick=()=>{li=(li+1)%fl.length;slb();};
+document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classList.contains('open'))return;if(e.key==='Escape')document.getElementById('lb').classList.remove('open');if(e.key==='ArrowLeft'){li=(li-1+fl.length)%fl.length;slb();}if(e.key==='ArrowRight'){li=(li+1)%fl.length;slb();}});
+document.getElementById('fbar').addEventListener('click',e=>{const b=e.target.closest('.filter-btn');if(!b)return;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const c=b.dataset.cat;fl=c==='all'?[...P]:P.filter(p=>p.cat===c);rend(fl);});
+rend(fl);
 </script>
 <script src="js/main.js"></script>
 </body>
