@@ -8,11 +8,19 @@ const QUIZ_DONE_KEY = 'jsm_quiz_done';
 const VIDEO_WATCHED_KEY = 'jsm_videos_watched';
 
 function getTokens() {
-  return parseInt(localStorage.getItem(TOKEN_KEY) || '0', 10);
+  try {
+    return parseInt(localStorage.getItem(TOKEN_KEY) || '0', 10);
+  } catch (_) {
+    return 0;
+  }
 }
 function addTokens(n) {
   const t = getTokens() + n;
-  localStorage.setItem(TOKEN_KEY, t);
+  try {
+    localStorage.setItem(TOKEN_KEY, t);
+  } catch (_) {
+    // Ignore storage write failures (e.g. private mode / storage disabled)
+  }
   updateAllTokenDisplays();
   return t;
 }
@@ -134,10 +142,19 @@ function initPlaylist() {
       el.classList.toggle('active', i === idx);
     });
     // Award token for watching (once per video per session)
-    const watched = JSON.parse(sessionStorage.getItem(VIDEO_WATCHED_KEY) || '[]');
+    let watched = [];
+    try {
+      watched = JSON.parse(sessionStorage.getItem(VIDEO_WATCHED_KEY) || '[]');
+    } catch (_) {
+      watched = [];
+    }
     if (!watched.includes(v.id)) {
       watched.push(v.id);
-      sessionStorage.setItem(VIDEO_WATCHED_KEY, JSON.stringify(watched));
+      try {
+        sessionStorage.setItem(VIDEO_WATCHED_KEY, JSON.stringify(watched));
+      } catch (_) {
+        // Ignore storage write failures
+      }
       addTokens(2);
       showToast('🏅 +2 tokens for watching a video!');
     }
@@ -150,7 +167,7 @@ function initPlaylist() {
       <div class="playlist-thumb">
         <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
              alt="${v.title}" loading="lazy"
-             onerror="this.src='images/placeholder.svg'">
+             onerror="this.src='sddefault.jpg'">
         <div class="play-icon">▶</div>
       </div>
       <div class="playlist-title">${v.title}</div>
@@ -189,7 +206,13 @@ function initGallery() {
     lightboxIdx = i;
     const img = lightboxItems[i].querySelector('img');
     const cap = lightboxItems[i].querySelector('.gallery-caption');
-    lbImg.src = img.src;
+    if (img) {
+      lbImg.src = img.src;
+      lbImg.style.display = '';
+    } else {
+      lbImg.removeAttribute('src');
+      lbImg.style.display = 'none';
+    }
     lbCap.textContent = cap ? cap.textContent : '';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -316,7 +339,11 @@ function initQuiz() {
   const retryBtn    = document.getElementById('quiz-retry');
   if (!container) return;
 
-  quizDone = (localStorage.getItem(QUIZ_DONE_KEY) === 'true');
+  try {
+    quizDone = (localStorage.getItem(QUIZ_DONE_KEY) === 'true');
+  } catch (_) {
+    quizDone = false;
+  }
   renderQuiz();
 
   submitBtn && submitBtn.addEventListener('click', submitQuiz);
@@ -383,7 +410,11 @@ function initQuiz() {
     const earned = score * 5 + 10;
     if (!quizDone) {
       addTokens(earned);
-      localStorage.setItem(QUIZ_DONE_KEY, 'true');
+      try {
+        localStorage.setItem(QUIZ_DONE_KEY, 'true');
+      } catch (_) {
+        // Ignore storage write failures
+      }
       quizDone = true;
     }
 
@@ -400,7 +431,11 @@ function initQuiz() {
   }
 
   function retryQuiz() {
-    localStorage.removeItem(QUIZ_DONE_KEY);
+    try {
+      localStorage.removeItem(QUIZ_DONE_KEY);
+    } catch (_) {
+      // Ignore storage write failures
+    }
     quizDone = false;
     if (scoreScreen) scoreScreen.classList.remove('show');
     if (submitBtn) submitBtn.classList.remove('hidden');
