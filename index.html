@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julius Sumner Miller — Physics Classroom</title>
+  <meta name="description" content="Explore the world of physics with Julius Sumner Miller — videos, history, experiments, gallery and quizzes.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+    .hero-actions { display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; margin-top:1.75rem; }
+    .hero-actions a {
+      display:inline-flex; align-items:center; gap:.45rem;
+      background:var(--accent); color:#000; font-weight:700;
+      padding:.7rem 1.4rem; border-radius:8px; font-size:.95rem;
+      transition:background .2s,transform .2s;
+    }
+    .hero-actions a:hover { background:var(--accent-hover); transform:translateY(-2px); text-decoration:none; }
+    .hero-actions a.secondary {
+      background:var(--bg-card); color:var(--text-primary);
+      border:1px solid var(--border);
+    }
+    .hero-actions a.secondary:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-dim); }
+    .now-playing {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:.6rem 1rem;
+      display:flex; align-items:center; gap:.75rem;
+      margin-bottom:1rem; font-size:.9rem;
+    }
+    .now-playing .dot {
+      width:10px; height:10px; border-radius:50%;
+      background:#2ea043; box-shadow:0 0 6px #2ea043;
+      animation:pulse 1.5s infinite;
+      flex-shrink:0;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.4;} }
+    .about-split { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start; }
+    @media(max-width:680px){ .about-split { grid-template-columns:1fr; } }
+    .about-img {
+      border-radius:var(--radius); overflow:hidden;
+      border:2px solid var(--border);
+      aspect-ratio:3/4; background:var(--bg-card);
+      display:flex; align-items:center; justify-content:center;
+      font-size:6rem;
+    }
+    .quick-links { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
+    .quick-link {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.25rem;
+      display:flex; flex-direction:column; align-items:flex-start; gap:.5rem;
+      transition:border-color .2s, transform .2s;
+      color:var(--text-primary);
+    }
+    .quick-link:hover { border-color:var(--accent); transform:translateY(-3px); text-decoration:none; }
+    .quick-link .icon { font-size:2rem; }
+    .quick-link h3 { font-size:1rem; color:var(--accent); }
+    .quick-link p { font-size:.82rem; color:var(--text-secondary); margin:0; }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="brand">
+    <span class="atom">⚛</span>
+    Julius Sumner Miller
+  </div>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <span style="font-size:.85rem;color:var(--text-secondary);">🏅 <strong class="js-token-count">0</strong> tokens</span>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ── Navigation Overlay ── -->
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<!-- ── Slide-out Nav ── -->
+<nav class="nav-menu" id="nav-menu">
+  <h3>📺 Main</h3>
+  <ul>
+    <li><a href="index.html"><span class="icon">🏠</span> Home &amp; Videos</a></li>
+    <li><a href="history.html"><span class="icon">📖</span> History &amp; Biography</a></li>
+    <li><a href="gallery.html"><span class="icon">🖼</span> Image Gallery</a></li>
+    <li><a href="experiments.html"><span class="icon">🔬</span> Physics Experiments</a></li>
+    <li><a href="quiz.html"><span class="icon">🧠</span> Quiz &amp; Tokens</a></li>
+  </ul>
+  <h3>🔗 Julius Sumner Miller Links</h3>
+  <ul>
+    <li><a href="https://en.wikipedia.org/wiki/Julius_Sumner_Miller" target="_blank" rel="noopener"><span class="icon">🌐</span> Wikipedia</a></li>
+    <li><a href="https://www.youtube.com/results?search_query=Julius+Sumner+Miller" target="_blank" rel="noopener"><span class="icon">▶</span> YouTube Channel</a></li>
+    <li><a href="https://www.abc.net.au/education/julius-sumner-miller/10043290" target="_blank" rel="noopener"><span class="icon">📡</span> ABC Education</a></li>
+    <li><a href="https://www.imdb.com/name/nm0590244/" target="_blank" rel="noopener"><span class="icon">🎬</span> IMDB Profile</a></li>
+    <li><a href="https://trove.nla.gov.au/search/category/books?keyword=julius+sumner+miller" target="_blank" rel="noopener"><span class="icon">📚</span> NLA Trove Archive</a></li>
+    <li><a href="https://www.britannica.com/biography/Julius-Sumner-Miller" target="_blank" rel="noopener"><span class="icon">📰</span> Encyclopædia Britannica</a></li>
+  </ul>
+  <h3>🏅 Your Progress</h3>
+  <ul>
+    <li style="padding:.55rem .6rem;font-size:.9rem;color:var(--text-secondary);">
+      Tokens earned: <strong class="js-token-count" style="color:var(--accent);">0</strong>
+    </li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <h1>⚛ Julius Sumner Miller</h1>
+  <p class="tagline">Physicist · Educator · Showman · Why Is It So?</p>
+  <blockquote class="quote">
+    "The most important thing I can tell you about physics is this: it's not just formulas —
+    it's the universe talking to you. <em>Why is it so?</em>"
+    <br><small style="font-size:.8rem;opacity:.7;margin-top:.4rem;display:block;">— Julius Sumner Miller</small>
+  </blockquote>
+  <div class="hero-actions">
+    <a href="#videos">▶ Watch Videos</a>
+    <a href="experiments.html" class="secondary">🔬 Experiments</a>
+    <a href="quiz.html" class="secondary">🧠 Take the Quiz</a>
+  </div>
+</section>
+
+<!-- ── Main Content ── -->
+<main class="container">
+
+  <!-- Video Player -->
+  <section class="section" id="videos">
+    <h2 class="section-title">📺 Video Classroom</h2>
+    <div class="now-playing">
+      <span class="dot"></span>
+      <span>Now playing: <strong id="video-title">Why Is It So? — Mechanics &amp; Motion</strong>
+        &nbsp;·&nbsp; Topic: <em id="video-topic">Mechanics</em>
+      </span>
+      <span style="margin-left:auto;font-size:.78rem;color:var(--text-secondary);">+2 🏅 per video</span>
+    </div>
+    <div class="video-wrapper">
+      <iframe id="main-player"
+        src="https://www.youtube.com/embed/p5oUI7RCyUI?rel=0&modestbranding=1"
+        title="Julius Sumner Miller — Why Is It So?"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen loading="lazy">
+      </iframe>
+    </div>
+    <div class="playlist-grid" id="playlist-grid"></div>
+  </section>
+
+  <!-- About JSM -->
+  <section class="section" id="about">
+    <h2 class="section-title">👨‍🔬 About Julius Sumner Miller</h2>
+    <div class="about-split">
+      <div>
+        <p style="margin-bottom:1rem;">
+          <strong>Julius Sumner Miller</strong> (1909–1987) was an American-born physicist and science
+          educator who became one of the most beloved science communicators in the world. Born in
+          Stoughton, Massachusetts, Miller's infectious enthusiasm for physics captivated audiences
+          across the United States and Australia.
+        </p>
+        <p style="margin-bottom:1rem;">
+          His television series <em>"Why Is It So?"</em> — produced by the Australian Broadcasting
+          Corporation (ABC) — made him a household name. With theatrical flair, dramatic gestures,
+          and genuine wonder, Miller demonstrated that physics is not just a subject but a way of
+          seeing the world.
+        </p>
+        <p>
+          He taught at El Camino College in California and held positions at several universities,
+          but his greatest classroom was the television studio, where millions watched him challenge
+          them with his signature catchphrase: <strong>"Why is it so?"</strong>
+        </p>
+        <div class="callout" style="margin-top:1.25rem;">
+          <strong>Key fact:</strong> Miller once performed his physics demonstrations for Albert Einstein
+          and was praised for his ability to make complex physics tangible and exciting.
+        </div>
+      </div>
+      <div class="about-img">🧑‍🔬</div>
+    </div>
+  </section>
+
+  <!-- Quick navigation -->
+  <section class="section" id="explore">
+    <h2 class="section-title">🗺 Explore the Classroom</h2>
+    <div class="quick-links">
+      <a class="quick-link" href="history.html">
+        <span class="icon">📖</span>
+        <h3>Full History</h3>
+        <p>Detailed biography, timeline and career highlights.</p>
+      </a>
+      <a class="quick-link" href="gallery.html">
+        <span class="icon">🖼</span>
+        <h3>Image Gallery</h3>
+        <p>Physics demonstrations, portraits and classroom moments.</p>
+      </a>
+      <a class="quick-link" href="experiments.html">
+        <span class="icon">🔬</span>
+        <h3>Experiments</h3>
+        <p>18 classic JSM experiments with physics explanations.</p>
+      </a>
+      <a class="quick-link" href="quiz.html">
+        <span class="icon">🧠</span>
+        <h3>Quiz &amp; Tokens</h3>
+        <p>Test your knowledge and earn tokens. 12 questions await!</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <h2 class="section-title">📊 By the Numbers</h2>
+    <div class="stat-strip">
+      <div class="stat-box"><span class="num">24</span><span class="lbl">TV seasons</span></div>
+      <div class="stat-box"><span class="num">100+</span><span class="lbl">Episodes filmed</span></div>
+      <div class="stat-box"><span class="num">3</span><span class="lbl">Books published</span></div>
+      <div class="stat-box"><span class="num">1963</span><span class="lbl">Year ABC series began</span></div>
+      <div class="stat-box"><span class="num">∞</span><span class="lbl">Curiosity sparked</span></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>⚛ Julius Sumner Miller Physics Classroom &nbsp;·&nbsp;
+    <a href="history.html">History</a> &nbsp;·&nbsp;
+    <a href="gallery.html">Gallery</a> &nbsp;·&nbsp;
+    <a href="experiments.html">Experiments</a> &nbsp;·&nbsp;
+    <a href="quiz.html">Quiz</a>
+  </p>
+  <p style="margin-top:.4rem;">Educational resource — all video content via YouTube. Images courtesy public domain.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

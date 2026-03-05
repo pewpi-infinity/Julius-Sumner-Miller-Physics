@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History — Julius Sumner Miller Physics Classroom</title>
+  <meta name="description" content="The life and legacy of Julius Sumner Miller — physicist, educator and television icon.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+    .bio-lead {
+      font-size:1.1rem; color:var(--text-secondary);
+      border-left:4px solid var(--accent); padding-left:1.25rem;
+      margin-bottom:2rem; line-height:1.8;
+    }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    @media(max-width:680px){ .two-col { grid-template-columns:1fr; } }
+    .portrait-box {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.5rem; text-align:center;
+    }
+    .portrait-box .face { font-size:8rem; margin-bottom:.5rem; }
+    .portrait-box .caption { font-size:.8rem; color:var(--text-secondary); }
+    .fact-list { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+    .fact-list li {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:8px; padding:.7rem 1rem; font-size:.9rem;
+      display:flex; align-items:flex-start; gap:.6rem;
+    }
+    .fact-list li .icon { flex-shrink:0; font-size:1.1rem; }
+    .awards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; }
+    .award-card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.25rem;
+    }
+    .award-card h4 { color:var(--accent); font-size:.95rem; margin-bottom:.3rem; }
+    .award-card p { font-size:.83rem; color:var(--text-secondary); }
+    .book-shelf { display:flex; flex-wrap:wrap; gap:1rem; }
+    .book {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1rem 1.25rem;
+      flex:1; min-width:200px;
+    }
+    .book h4 { color:var(--accent); font-size:.95rem; }
+    .book p { font-size:.83rem; color:var(--text-secondary); margin-top:.3rem; }
+    .book .year { font-size:.75rem; opacity:.65; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="atom">⚛</span> Julius Sumner Miller
+  </div>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <span style="font-size:.85rem;color:var(--text-secondary);">🏅 <strong class="js-token-count">0</strong> tokens</span>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="nav-overlay" id="nav-overlay"></div>
+<nav class="nav-menu" id="nav-menu">
+  <h3>📺 Main</h3>
+  <ul>
+    <li><a href="index.html"><span class="icon">🏠</span> Home &amp; Videos</a></li>
+    <li><a href="history.html"><span class="icon">📖</span> History &amp; Biography</a></li>
+    <li><a href="gallery.html"><span class="icon">🖼</span> Image Gallery</a></li>
+    <li><a href="experiments.html"><span class="icon">🔬</span> Physics Experiments</a></li>
+    <li><a href="quiz.html"><span class="icon">🧠</span> Quiz &amp; Tokens</a></li>
+  </ul>
+  <h3>🔗 Julius Sumner Miller Links</h3>
+  <ul>
+    <li><a href="https://en.wikipedia.org/wiki/Julius_Sumner_Miller" target="_blank" rel="noopener"><span class="icon">🌐</span> Wikipedia</a></li>
+    <li><a href="https://www.youtube.com/results?search_query=Julius+Sumner+Miller" target="_blank" rel="noopener"><span class="icon">▶</span> YouTube Channel</a></li>
+    <li><a href="https://www.abc.net.au/education/julius-sumner-miller/10043290" target="_blank" rel="noopener"><span class="icon">📡</span> ABC Education</a></li>
+    <li><a href="https://www.imdb.com/name/nm0590244/" target="_blank" rel="noopener"><span class="icon">🎬</span> IMDB Profile</a></li>
+    <li><a href="https://trove.nla.gov.au/search/category/books?keyword=julius+sumner+miller" target="_blank" rel="noopener"><span class="icon">📚</span> NLA Trove Archive</a></li>
+    <li><a href="https://www.britannica.com/biography/Julius-Sumner-Miller" target="_blank" rel="noopener"><span class="icon">📰</span> Encyclopædia Britannica</a></li>
+  </ul>
+  <h3>🏅 Your Progress</h3>
+  <ul>
+    <li style="padding:.55rem .6rem;font-size:.9rem;color:var(--text-secondary);">
+      Tokens: <strong class="js-token-count" style="color:var(--accent);">0</strong>
+    </li>
+  </ul>
+</nav>
+
+<section class="hero" style="padding:2.5rem 1.5rem 2rem;">
+  <h1>📖 History &amp; Biography</h1>
+  <p class="tagline">The life, legacy and impact of Julius Sumner Miller</p>
+</section>
+
+<main class="container">
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="two-col">
+      <div>
+        <p class="bio-lead">
+          Julius Sumner Miller (1909–1987) was an American physicist and science communicator
+          whose theatrical approach to teaching made physics accessible, exciting and
+          unforgettable for generations of students worldwide.
+        </p>
+        <p style="margin-bottom:1rem;color:var(--text-secondary);">
+          Born on May 17, 1909 in <strong style="color:var(--text-primary);">Stoughton, Massachusetts</strong>,
+          Miller showed an early fascination with how the natural world works. His mother encouraged his
+          curiosity, and he went on to earn advanced degrees in physics before embarking on a remarkable
+          career that blended rigorous science with passionate showmanship.
+        </p>
+        <p style="margin-bottom:1rem;color:var(--text-secondary);">
+          Miller was known for his dramatic style — wild gestures, exclamations of wonder, and a booming
+          voice that filled lecture halls and television studios alike. He studied at Tufts University,
+          obtained his master's degree from Boston University, and later completed his doctorate.
+          He joined the faculty of <strong style="color:var(--text-primary);">El Camino College</strong>
+          in California, where he taught physics for decades.
+        </p>
+        <p style="color:var(--text-secondary);">
+          His greatest impact came through television. Beginning in 1963, the
+          <strong style="color:var(--text-primary);">Australian Broadcasting Corporation (ABC)</strong>
+          invited Miller to produce "Why Is It So?" — a series that became a cultural phenomenon
+          in Australia. With nothing more than everyday objects, Miller demonstrated the fundamental
+          laws of the universe to millions of viewers.
+        </p>
+      </div>
+      <div>
+        <div class="portrait-box">
+          <div class="face">🧑‍🔬</div>
+          <p style="font-size:1.1rem;font-weight:700;margin:.25rem 0 .1rem;">Julius Sumner Miller</p>
+          <p class="caption">May 17, 1909 – April 14, 1987</p>
+          <p class="caption" style="margin-top:.6rem;">Physicist · Educator · Television Presenter</p>
+          <p class="caption">El Camino College, California</p>
+        </div>
+        <ul class="fact-list" style="margin-top:1rem;">
+          <li><span class="icon">🎂</span><span>Born May 17, 1909, Stoughton, Massachusetts, USA</span></li>
+          <li><span class="icon">🎓</span><span>PhD in Physics; faculty at El Camino College, CA</span></li>
+          <li><span class="icon">📺</span><span>Hosted "Why Is It So?" (ABC, Australia, 1963–1986)</span></li>
+          <li><span class="icon">📚</span><span>Author of three physics textbooks</span></li>
+          <li><span class="icon">🏅</span><span>Recipient of the Michael Faraday Medal</span></li>
+          <li><span class="icon">💀</span><span>Died April 14, 1987 in Sydney, Australia</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section">
+    <h2 class="section-title">🗓 Life Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1909</div>
+        <div class="timeline-event">
+          <h3>Born in Stoughton, Massachusetts</h3>
+          <p>Julius Sumner Miller is born to a family that encourages intellectual curiosity. He shows an early interest in science and the natural world from a very young age.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Late 1920s–30s</div>
+        <div class="timeline-event">
+          <h3>University Education</h3>
+          <p>Miller attends Tufts University and later Boston University, where he studies physics intensively. He earns a bachelor's and master's degree, developing his teaching philosophy along the way.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1930s–40s</div>
+        <div class="timeline-event">
+          <h3>Doctoral Studies &amp; Early Teaching</h3>
+          <p>Completing his PhD in physics, Miller begins his academic career. He refines his distinctive lecture style — energetic, theatrical and always centred on demonstrations with physical objects rather than abstract equations.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1940s–50s</div>
+        <div class="timeline-event">
+          <h3>El Camino College, California</h3>
+          <p>Miller joins El Camino College in Torrance, California, where he will spend the majority of his teaching career. His lecture demonstrations become legendary among students. He is reputed to have once demonstrated physics for Albert Einstein himself.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1950s</div>
+        <div class="timeline-event">
+          <h3>Early Television Appearances (USA)</h3>
+          <p>Miller begins appearing on American television to bring physics to broader audiences. His natural charisma and ability to explain concepts using everyday objects translates perfectly to the screen.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1963</div>
+        <div class="timeline-event">
+          <h3>"Why Is It So?" Debuts on ABC Australia</h3>
+          <p>The Australian Broadcasting Corporation commissions Miller to host a series of physics demonstrations. "Why Is It So?" premieres and is an immediate hit. Miller's catchphrase — "Why is it so?" — becomes part of Australian cultural vernacular.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1963–1986</div>
+        <div class="timeline-event">
+          <h3>24 Seasons of "Why Is It So?"</h3>
+          <p>Over more than two decades, Miller films hundreds of episodes covering mechanics, optics, thermodynamics, electricity, magnetism, fluids, and more. The series is broadcast internationally and reshown many times. It remains one of the most beloved educational TV programmes ever made.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1960s–70s</div>
+        <div class="timeline-event">
+          <h3>Books &amp; Publications</h3>
+          <p>Miller writes and publishes a series of physics textbooks and laboratory manuals that become widely used in colleges and universities. His writing retains the infectious enthusiasm of his lectures, making dry topics come alive on the page.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1970s</div>
+        <div class="timeline-event">
+          <h3>International Recognition</h3>
+          <p>Miller receives international recognition for his contributions to science education. He is celebrated not only in the United States and Australia but across the English-speaking world. Science educators cite him as a major inspiration.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1985</div>
+        <div class="timeline-event">
+          <h3>Cadbury Chocolate Advertisement</h3>
+          <p>In one of Australia's most memorable advertising campaigns, Miller appears in Cadbury chocolate commercials, bringing his "Why Is It So?" persona to a whole new generation of Australians. The advertisements increase his fame even further.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1987</div>
+        <div class="timeline-event">
+          <h3>Death in Sydney, Australia</h3>
+          <p>Julius Sumner Miller passes away on April 14, 1987, in Sydney, Australia — a country that had adopted him as one of its own. He dies at the age of 77. His legacy as science communicator, educator and entertainer endures to this day.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1990s–Present</div>
+        <div class="timeline-event">
+          <h3>Enduring Legacy</h3>
+          <p>After his death, Miller's "Why Is It So?" episodes are digitised and made available online. A new generation discovers his work on YouTube and streaming platforms. Physics teachers worldwide continue to cite him as their greatest inspiration. His catchphrase lives on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaching philosophy -->
+  <section class="section">
+    <h2 class="section-title">💡 Teaching Philosophy</h2>
+    <div class="two-col">
+      <div>
+        <p style="margin-bottom:1rem;color:var(--text-secondary);">
+          Miller believed that the best way to understand physics was through direct physical experience —
+          seeing, touching and questioning. He despised rote learning and memorisation of formulas
+          without understanding.
+        </p>
+        <p style="margin-bottom:1rem;color:var(--text-secondary);">
+          His demonstrations always began with a question — "Why is it so?" — and only after the
+          audience had time to wonder did he reveal the answer. This Socratic approach kept viewers
+          engaged and transformed passive watching into active thinking.
+        </p>
+        <p style="color:var(--text-secondary);">
+          He championed the idea that physics is not a collection of facts to memorise but a way of
+          interrogating reality. Every time you see a spinning top, a falling leaf, a floating ship or
+          a bubbling pot of water — that's physics, and it deserves to be questioned.
+        </p>
+      </div>
+      <div>
+        <div class="callout">
+          <strong>"The man who cannot wonder, who does not habitually wonder and worship, is but a pair of spectacles behind which there are no eyes."</strong>
+          <br><small style="opacity:.7;">— Thomas Carlyle, often quoted by Miller</small>
+        </div>
+        <div class="callout" style="margin-top:1rem;">
+          <strong>"Anybody who isn't confused doesn't understand what's going on."</strong>
+          <br><small style="opacity:.7;">— Julius Sumner Miller, on the nature of learning</small>
+        </div>
+        <div class="callout" style="margin-top:1rem;">
+          <strong>"Experiment! Don't just read about it — do it. See it. Touch it. Feel it. Ask: WHY IS IT SO?"</strong>
+          <br><small style="opacity:.7;">— Julius Sumner Miller</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books -->
+  <section class="section">
+    <h2 class="section-title">📚 Books &amp; Publications</h2>
+    <div class="book-shelf">
+      <div class="book">
+        <h4>Physics — Circus Maximus</h4>
+        <p class="year">1960s</p>
+        <p>A collection of Miller's most spectacular physics demonstrations, written for both students and general readers. Filled with experiments you can try at home using everyday objects.</p>
+      </div>
+      <div class="book">
+        <h4>Millergrams I &amp; II</h4>
+        <p class="year">1966, 1969</p>
+        <p>A two-volume set of physics problems and puzzles, each accompanied by Miller's characteristically entertaining commentary. Used as supplementary texts in physics courses worldwide.</p>
+      </div>
+      <div class="book">
+        <h4>Why Is It So?</h4>
+        <p class="year">1971</p>
+        <p>A companion volume to the television series, this book brings Miller's most famous demonstrations to the printed page with rich descriptions, diagrams and explanations of the underlying physics principles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legacy -->
+  <section class="section">
+    <h2 class="section-title">🏆 Awards &amp; Recognition</h2>
+    <div class="awards-grid">
+      <div class="award-card">
+        <h4>🎖 Michael Faraday Medal</h4>
+        <p>Awarded by the Royal Institution of Great Britain for exceptional contributions to the communication of science to the public.</p>
+      </div>
+      <div class="award-card">
+        <h4>📺 ABC Icon of Science Education</h4>
+        <p>Recognised by the Australian Broadcasting Corporation as one of the most important figures in television science education.</p>
+      </div>
+      <div class="award-card">
+        <h4>🎓 Honorary Degrees</h4>
+        <p>Received honorary doctorates from several institutions in recognition of his contribution to physics education and public understanding of science.</p>
+      </div>
+      <div class="award-card">
+        <h4>⚗ AAPT Distinguished Service</h4>
+        <p>Recognised by the American Association of Physics Teachers for decades of distinguished service to physics education at all levels.</p>
+      </div>
+      <div class="award-card">
+        <h4>🌏 Cultural Heritage</h4>
+        <p>In Australia, Miller's catchphrase "Why Is It So?" is part of the national cultural consciousness, and he is remembered as the man who made physics fun for a generation.</p>
+      </div>
+      <div class="award-card">
+        <h4>📱 Digital Legacy</h4>
+        <p>His digitised episodes on YouTube have accumulated millions of views, introducing JSM to entirely new generations of physics enthusiasts decades after his death.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center" style="padding:2rem 0;">
+    <a href="experiments.html" class="btn">🔬 Explore His Experiments</a>
+    &nbsp;
+    <a href="gallery.html" class="btn secondary" style="margin-top:.5rem;">🖼 View the Gallery</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>⚛ Julius Sumner Miller Physics Classroom &nbsp;·&nbsp;
+    <a href="index.html">Home</a> &nbsp;·&nbsp;
+    <a href="gallery.html">Gallery</a> &nbsp;·&nbsp;
+    <a href="experiments.html">Experiments</a> &nbsp;·&nbsp;
+    <a href="quiz.html">Quiz</a>
+  </p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
